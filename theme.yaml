@@ -5,5 +5,5 @@ homepage: "https://docs.wintercms.com"
 code: "nabu"
 
 require:
-    - Winter.Docs
+    - Wpjscc.Docs
     - Winter.Search
