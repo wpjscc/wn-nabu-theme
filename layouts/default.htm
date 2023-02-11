@@ -63,8 +63,8 @@ description = "Default layout"
                             <a
                                 href="{{ 'doc' | page({service:groupVersion.service,version:groupVersion.version,slug: '' }) }}"
                                 class="
-                                    block text-center text-grey-800 dark:text-white opacity-30 hover:opacity-70 px-3 flex-grow
-                                    {% if service == groupVersion.service and version == groupVersion.version %} opacity-100 {% endif %}
+                                    block text-center text-grey-800 dark:text-white opacity-30 hover:opacity-70 px-3 flex-grow 
+                                    {% if service == groupVersion.service and version == groupVersion.version %} opacity-70 {% endif %}
                                 "
                             >
                                 {{groupVersion.version}}
