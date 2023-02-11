@@ -104,13 +104,15 @@ export default class DocPageLoader extends Snowboard.Singleton {
             }
 
             updatedElement.querySelectorAll('a:not([href^="#"],.external-link)').forEach((element) => {
-                element.dataset.docPage = this.getPagePath(element);
-                element.removeEventListener('click', this.events.click, {
-                    capture: true,
-                });
-                element.addEventListener('click', this.events.click, {
-                    capture: true,
-                });
+                if (this.getPagePath(element)) {
+                    element.dataset.docPage = this.getPagePath(element);
+                    element.removeEventListener('click', this.events.click, {
+                        capture: true,
+                    });
+                    element.addEventListener('click', this.events.click, {
+                        capture: true,
+                    });
+                }
             });
         });
     }
