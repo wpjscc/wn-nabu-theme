@@ -5,5 +5,5 @@ node_modules
 mix.webpack.js
 
 # Ignore compiled assets
-assets/css/theme.css
-assets/js/build/app.js
+# assets/css/theme.css
+# assets/js/build/app.js
