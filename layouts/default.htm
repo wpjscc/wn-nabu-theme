@@ -14,12 +14,14 @@ description = "Default layout"
     <div class="w-full mt-4 lg:mt-0 flex flex-row-reverse gap-6 lg:flex-col items-center lg:items-start">
         <div class="w-auto lg:w-full h-10 flex flex-row justify-end lg:gap-2 xl:gap-8">
             <a
+                {# href="{{ 'home' | page }}" #}
                 href="{{ 'home' | page }}"
-                title="Winter CMS Documentation"
+                title="Documentation"
                 class="
                     hidden lg:block w-1/2 text-navy-light dark:text-grey-200 flex-grow
             ">
-                {% partial 'site/logo' %}
+                {{docName}}
+                {# {% partial 'site/logo' %} #}
             </a>
 
             <div id="settings" class="
@@ -28,7 +30,7 @@ description = "Default layout"
                 font-semibold text-caption-mobile lg:text-caption cursor-pointer self-end
             ">
                 <span class="block flex-shrink-0 whitespace-nowrap">
-                    {% partial 'docs/short-title' docId=docId %}
+                    {% partial 'docs/short-title' docId=docId version=version %}
                 </span>
 
                 <span class="block arrow flex-shrink-0"></span>
@@ -45,51 +47,33 @@ description = "Default layout"
                     <div class="
                         text-caption-mobile lg:text-caption font-semibold text-grey-500 dark:text-blue
                     ">
-                        Version 1.2
+                    Version {{version}}
                     </div>
+                    {% for key,groupVersions in versions %}
+                        <div class="
+                            text-caption-mobile lg:text-caption font-semibold text-grey-500 dark:text-blue
+                        ">
+                        {# {{key}} #}
+                        </div>
+                        
+                        <div class="flex flex-row divide-x divide-grey-500 dark:divide-blue-dark">
+                            {% for index,groupVersion in groupVersions %}
+                               
 
-                    <div class="flex flex-row divide-x divide-grey-500 dark:divide-blue-dark">
-                        <a
-                            href="{{ 'winter-cms-12-documentation' | page({ slug: '' }) }}"
-                            class="
-                                block text-center text-grey-800 dark:text-white opacity-30 hover:opacity-70 pr-3 flex-grow
-                                {% if docId == 'winter.winterdocs.winterbranch12' %} opacity-100 {% endif %}
-                            "
-                        >
-                            Docs
-                        </a>
+                            <a
+                                href="{{ 'doc' | page({service:groupVersion.service,version:groupVersion.version,slug: '' }) }}"
+                                class="
+                                    block text-center text-grey-800 dark:text-white opacity-30 hover:opacity-70 px-3 flex-grow
+                                    {% if service == groupVersion.service and version == groupVersion.version %} opacity-100 {% endif %}
+                                "
+                            >
+                                {{groupVersion.version}}
+                            </a>
 
-                        <a
-                            href="{{ 'winter-cms-12-api-documentation' | page({ slug: '' }) }}"
-                            class="
-                                block text-center text-grey-800 dark:text-white opacity-30 hover:opacity-70 px-3 flex-grow
-                                {% if docId == 'winter.winterdocs.winterbranch12api' %} opacity-100 {% endif %}
-                            "
-                        >
-                            API
-                        </a>
+                            {% endfor %}
 
-                        <a
-                            href="{{ 'winter-cms-12-markup-documentation' | page({ slug: '' }) }}"
-                            class="
-                                block text-center text-grey-800 dark:text-white opacity-30 hover:opacity-70 px-3 flex-grow
-                                {% if docId == 'winter.winterdocs.winterbranch12markup' %} opacity-100 {% endif %}
-                            "
-                        >
-                            Markup
-                        </a>
-
-                        <a
-                            href="{{ 'winter-cms-12-user-interface-documentation' | page({ slug: '' }) }}"
-                            class="
-                                block text-center text-grey-800 dark:text-white opacity-30 hover:opacity-70 pl-3 flex-grow
-                                {% if docId == 'winter.winterdocs.winterbranch12ui' %} opacity-100 {% endif %}
-                            "
-                        >
-                            UI
-                        </a>
-                    </div>
-
+                        </div>
+                    {% endfor %}
                     <div class="flex flex-row gap-4 mt-3 pt-4 border-t border-grey-500 dark:border-blue-dark border-opacity-30 dark:border-opacity-30">
                         <a
                             href="#"
@@ -160,7 +144,7 @@ description = "Default layout"
     <div class="flex-grow">
         <a
             href="{{ 'home' | page }}"
-            title="Winter CMS Documentation"
+            title="Documentation"
             class="block h-[40px] w-7 mx-auto overflow-hidden relative mobile-logo"
         >
             <svg class="w-32 h-[40px] transition-all absolute right-0 top-0" viewBox="0 0 8992 2212"
