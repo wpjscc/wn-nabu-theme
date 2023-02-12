@@ -14,6 +14,7 @@
             placeholder="Enter your search query"
             data-track-input
         >
+        <input type="hidden" name="handler" value="docs.{{docId}}">
     {{ form_close() }}
 
     <div id="{{ __SELF__.getId('results') }}" class="p-4 w-full h-full overflow-y-auto scrollbar scrollbar-track-transparent scrollbar-thumb-grey-300 dark:scrollbar-thumb-grey-500">
